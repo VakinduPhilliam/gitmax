@@ -52,7 +52,7 @@ _Git Max Interface:_
 
 <br/>
 
-## Installation:
+## Installation on Desktop PC:
 
 Install the following applications on your PC before running the web app.
 
@@ -101,7 +101,7 @@ Open your browser and visit, http://localhost:8080/ to view the app.
 
 - First, create an OpenShift sandbox account, create a 'cluster', then create a 'project'.
 
-- Click '+ Add' to views options for building and deploying your app.
+- Click '+ Add' to view options for building and deploying your app.
 
 - Build the application via 'source code' using git access. Enter this Git repository (or repo): https://github.com/VakinduPhilliam/gitmax.git
 
@@ -110,7 +110,7 @@ It will choose to use the Builder image for the Node.JS programming language (i.
 
 - Once all those options are confirmed, click the 'Create' button at the bottom of the page.
 
-- Install the necessary dependency modules like described above.
+- Check that the build and deployment has installed the necessary dependency modules like described above.
 
 - Once you select the 'Create' button, you will be navigated back to 'Topology' page where you
  will see that our application now exists.

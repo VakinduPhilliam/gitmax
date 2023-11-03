@@ -10,3 +10,4 @@ tensorflow
 matplotlib
 pandas
 scikit-learn
+scikit-learn-intelex
