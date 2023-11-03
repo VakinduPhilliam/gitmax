@@ -6,6 +6,7 @@
 import sys, json
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearnex import patch_sklearn
 
 json_str = input() # Capture data input
 
