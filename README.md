@@ -90,8 +90,8 @@ _node index.js_
 
 </br>
 
-You should see a message like, "Server running on port: 6750" in your command terminal if the app is running successfully.
+You should see a message like, "Server running on port: 8080" in your command terminal if the app is running successfully.
 
-Open your browser and visit, http://localhost:6750/ to view the app.
+Open your browser and visit, http://localhost:8080/ to view the app.
 (You must be online for the app to fetch the Bitbucket API.)
 

@@ -8,7 +8,7 @@ const analyzerRoute = resolve('./routes/analyzer.py'); // Locate python app
 const fetch = require('node-fetch'); // Data fetch feature
 const {writeData, readData} = require('./helpers/save')
 
-const port = 6750; // define application port
+const port = 8080; // define application port
 
 // Initialize express app
 const app = express();
@@ -214,6 +214,6 @@ app.post('/addproject', async (req, res) => {
 
 // set the app to listen on the port
 app.listen(port, () => {
-    console.log(`App started successfully. Open your browser and go to: http://localhost:6750/`);
+    console.log(`App started successfully. Open your browser and go to: http://localhost:8080/`);
 });
 
