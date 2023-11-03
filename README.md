@@ -95,3 +95,35 @@ You should see a message like, "Server running on port: 8080" in your command te
 Open your browser and visit, http://localhost:8080/ to view the app.
 (You must be online for the app to fetch the Bitbucket API.)
 
+</br>
+
+## Deploying the App on RedHat Openshift:
+
+- First, create an OpenShift sandbox account, create a 'cluster', then create a 'project'.
+
+- Click '+ Add' to views options for building and deploying your app.
+
+- Build the application via 'source code' using git access. Enter this Git repository (or repo): https://github.com/VakinduPhilliam/gitmax.git
+
+OpenShift will copy the repo to an internal storage location, inspect it, and attempt to discern the 'import strategy' to build it. 
+It will choose to use the Builder image for the Node.JS programming language (i.e. the s2i technology option).
+
+- Once all those options are confirmed, click the 'Create' button at the bottom of the page.
+
+- Install the necessary dependency modules like described above.
+
+- Once you select the 'Create' button, you will be navigated back to 'Topology' page where you
+ will see that our application now exists.
+
+</br>
+
+## LIVE DEMOS:
+
+Visit the above URLs to see working demos.
+
+NOTE: First create an OpenShift account, then LOGIN and Visit the SANDBOX DEMO URL.
+
+LIVE OPENSHIFT SANDBOX DEPLOYMENT DEMO URL: https://gitmax-git-vakinduphilliam-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
+
+LIVE WEB APP: https://gitmax.myeulome.com
+
