@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <title>Git Max - Add New Project</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" sizes="32x32">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+    <link rel='stylesheet' type="text/css" href='/assets/css/me.css'/>
+  </head>
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <body>
+    <table width='100%' border='0' cellpadding="5px">
+      <tr> 
+      <td align='left' width='20%'> &nbsp;&nbsp; <a style="text-decoration: none;" href="/"><img width="150px" height="49px" src="/assets/images/logo.png" alt="Logo"></a></td>    
+      <td border="1px" bordercolor="#bcbcbc" align='center' width='60%'> <a style="text-decoration: none;" href="/"><font size="3" color='#0000'><strong> ⬅ &nbsp; Back Home </strong></font></a> </td>
+      <td align='right' width='20%'> </td>
+      </tr>
+      </table>
+      <hr>
+    </br>
+
+    <table width='100%' border='0' cellpadding="5px">
+    <tr> 
+    <td width='20%'> </td>    
+    <td>
+
+    <h2><font size="5" color='#0d6bc3'><strong> Add New Project </strong></font></h2>
+
+      <font size="4" color='#0000'>
+
+      <div class="col-lg-12"><strong><hr style="background-color: rgb(213, 210, 210);"></strong></div> <!-- gray separator line -->
+       
+      <font size="3" color="#6e736b"><strong> Project's BitBucket Repository URL </strong></font>
+      <br>
+      <input type="text" class="form-control" id="url" placeholder="E.g https://api.bitbucket.org/2.0/repositories/{workspace}/{repo_slug}" value="" name="url" minlength="50" maxlength="255" required>
+      <br><br>
+      <font size="3" color="#6e736b"><strong> API Authorization Key </strong></font>
+      <br>
+      <input type="tel" class="form-control" id="apikey" placeholder="E.g BetHA........xVt" value="" name="apikey" minlength="18" maxlength="255" required>
+      <br><br>
+      <font size="3" color="#6e736b"><strong> Name of Project Author </strong></font>
+      <br>
+      <input type="text" class="form-control" id="name" placeholder="E.g Vakindu Philliam" value="" name="name" maxlength="255" required>
+      <br>
+      <font size=3 color="#03989E"><strong><span id = "updatemessages"></span></strong></font>
+      </br>
+      <div class="col-lg-12"><strong><hr style="background-color: rgb(213, 210, 210);"></strong></div> <!-- gray separator line -->
+
+      <button class="btn-solid-lg" type="submit" id="pbutton" onclick ="addProject()">Add Project</button>
+
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+
+      <p class="copyright">&copy; <script>document.write(new Date().getFullYear());</script>, Git Max
+
+    </font>
+    </td>
+    <td width='20%'> </td>
+  </tr>
+  </table>
+
+  </br>
+
+  <!-- Scripts -->
+  <script>  
+        function addProject() {  
+
+          var msgs =''
+
+          // Get form values
+          var url = document.getElementById("url").value;  
+          var apikey = document.getElementById("apikey").value;  
+          var name = document.getElementById("name").value;  
+
+          //check empty name field  
+          if(url == "") {  
+             msgs += '<span>' + "❌ Fill in project URL please!" + '</span><br>';
+          }  
+
+          //check empty phone field  
+          if(apikey == "") {  
+             msgs += '<span>' + "❌ Fill in project API key please!" + '</span><br>';
+          }  
+
+         //check empty role field  
+          if(name == "") {  
+             msgs += '<span>' + "❌ Fill in project Author please!" + '</span><br>';
+          }  
+
+          // Function to test for valid URL
+          function isURL (element){   
+            let tester = false;
+            
+            // Regex for testing Valid URL
+            var urlRegex =  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[-a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+            
+            if(urlRegex.test(element)==true ){
+                tester=true;
+            }
+            
+            // Return validity
+            return tester; 
+          };
+
+          // Check that URL is valid
+          if(!isURL(url)) {  
+            msgs += '<span>' + "❌ Provide a valid Bitbucket Project URL please!" + '</span><br>'; 
+          } 
+
+          if(msgs=="") {  
+            $('#updatemessages').text(" Adding Project. Please Wait ....... ");
+            document.getElementById('pbutton').disabled = true;
+            $('#pbutton').text(" Adding Project ...");  
+
+            $.ajax({  
+            url:"/addproject",  
+            method:"POST",  
+            data:{name:name, url:url, apikey:apikey},  
+            dataType: "json",
+            success:function(data)  
+            {  
+            if(data.success==1){
+                $('#updatemessages').text(" ✔ Your project was added successfully.");
+
+                $('#pbutton').text("Project Added");  
+
+                document.getElementById('pbutton').disabled = true;
+
+                window.location.href = '/'
+
+            } else {
+                var errs =''
+
+                errs += '<span>' + "❌ Problem adding your Project!" + '</span><br>'; 
+                errs += '<span>' + "&nbsp;❓ Please verify you have the correct Repository URL and API Key and Try again! " + '</span><br>'; 
+
+                document.getElementById("updatemessages").innerHTML = errs; 
+                
+                document.getElementById('pbutton').disabled = false;
+                $('#pbutton').text("Add Project");  
+            }
+            }  
+            });  
+
+          } else {
+            document.getElementById("updatemessages").innerHTML = msgs;  
+          }
+
+        }  
+    </script>  
+  </body>
+</html>
+

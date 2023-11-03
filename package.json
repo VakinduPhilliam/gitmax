@@ -1,0 +1,18 @@
+{
+  "name": "gitmax",
+  "version": "1.0.0",
+  "description": "Git Max is an AI powered web app that uses AI Machine Learning to determinine the most relevant Bitbucket project pull requests.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pyinstall": "npm install && pip -m -r requirements.txt"
+  },
+  "author": "Vakindu Philliam",
+  "license": "MIT-LICENSE",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "node-fetch": "^2.6.1"
+  }
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+	<!-- SEO -->
+	<title>Git Max - Project's Most Critical Pull Requests</title>
+	<meta name="description" content="Git Max is an AI powered web app that uses AI Machine Learning to determinine the most relevant Bitbucket project issues and present them to the developer in real time."/>
+	<meta name="robots" content="index, follow" />
+	<meta name="referrer" content="always" />
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="assets/images/favicon.png" sizes="32x32">
+
+	<!-- Styles -->
+	<link rel='stylesheet' href='assets/css/me.css' type='text/css' media='screen' />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+	<style>
+		.container { width: 100%;}
+    </style>
+
+</head>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/chart.js"></script>
+<script src="assets/js/upload.js"></script>
+<body id="fullsingle" class="page-template-page-fullsingle-me">
+
+	<table width="100%" height="80%" border="0">
+	<tr>
+	<td colspan="3">
+	</br>
+	</td>
+	</tr>
+	<tr>
+	<td width="15%"></td>
+	<td width="70%">
+
+
+	<!-- Content Container -->
+	
+	    <table width="100%" height="100%" border="0">
+		<tr>
+		<td align='left' valign="top" width='50%'>
+			<div class="logo">
+				<a href="#"><img src="assets/images/logo.png" alt="Logo"/></a>
+			</div>
+		</td>
+		<td align='right' valign="top" width='50%'>
+			<input class="btn-solid-lg" style="vertical-align: top;" type="submit" value=" + NEW PROJECT " onclick="location.href='/add';">
+		</td>
+		</tr>
+		</table>
+
+		<table width="100%" height="100%" border="0">
+		<tr>
+		<td align='center' valign="top" width='50%' bgcolor="grey">
+		<font size='5' color="white">Most Urgent Project Issues</font>
+
+		<table width="100%" border="0">
+		<tr>
+		<td align='right' valign="top" width='20%'>  
+			<strong><font size='2' color="#ffd679"> &nbsp; Project URL: &nbsp;</font></strong>
+		</td> 
+		<td align='left' valign="top" width='80%'>  
+			<a style="text-decoration: none;" href="<%= project_url %>">
+			<strong><font size='2' color="#ffd679"><%= project_url %></font></strong>
+			</a>
+		</td> 
+	    </tr>
+		</table>
+
+			<div class="col-lg-12"><hr color="#717171"></div> <!-- gray separator line -->
+
+            <center><strong><font size='3' color="black"><i> Project issues/pull requests that require urgent attention *. </i></font></strong></center>
+
+			<div class="col-lg-12"><hr color="#6c6c6c"></div> <!-- gray separator line -->
+
+			<% if (issues.length > 0) {%>
+				<table width='100%' class="table table-hovered">
+					<tbody>
+						<% issues.forEach((issue, index) => { %>
+							<tr>
+
+								<td align='center' valign="top" width='8%'> 
+									<a style="text-decoration: none;" href="<%= issue.logs.link %>"> 
+									<font size='3' color="black">📁</font>
+									</a>
+								</td> 
+								<td align='center' valign="top" width='56%'>  
+									<a style="text-decoration: none;" href="<%= issue.logs.link %>">
+									<font size='2' color="black"><%= issue.logs.link %>(<font size='2' color="#414141"><%= issue.results.pullrequests %></font>)</font>
+									</a>
+								</td> 
+								<td align='center' valign="top" width='36%'>  
+									<a style="text-decoration: none;" href="<%= issue.logs.link %>">
+									<font size='1' color="black"><%= issue.logs.timestamp %></font>
+									</a>
+								</td> 
+
+							</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			  <% } %>
+
+
+            <input class="btn-solid-lg" type="submit" value=" + VISIT PROJECT " onclick="window.location.href='<%= project_url %>';">
+			<br>
+        	</br>
+		</td>
+		<td align="center" width='50%' bgcolor="white">
+		<font size='5'>Critical Project Issues</font></br>
+		<hr>
+		
+
+		<script type="text/javascript">
+  
+			window.onload=function(){
+			
+			$(document).ready(()=>{
+			
+			$.getJSON('http://localhost:6750/graph')
+			
+			.done((items)=>{
+			
+			   var labels = [], data=[];
+			
+				$.each(items, (key, val) =>{
+			
+					labels.push(items[key].logs.timestamp); // tPartition transitions
+					if (Object.keys(items[key].results).length==1 && typeof Object.values(items[key].results)[0]=='number') {
+					  data.push(Object.values(items[key].results)[0]); // Results found
+					} else {
+					  data.push(Object.keys(items[key].results).length); // Results found
+					}
+			
+				});
+			
+			var ctx = canvas.getContext('2d');
+			
+			var config = {
+			   type: 'line',
+			   data: {
+				  labels: labels,
+				  datasets: [{
+					 label: 'Important Project Issues:',
+					 data: data,
+					 borderColor: "#000066",
+					 backgroundColor: 'rgba(0, 0, 0, 0.1)',
+					 //backgroundColor: 'rgba(0, 119, 204, 0.3)'
+				  }]
+			   },
+				options: {
+					legend:{
+					  labels:{
+						boxWidth:23
+					  } 
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: 'Issue Creation Dates (D/M/Y)'
+							},
+						}],
+						yAxes: [{
+						  display: true,
+						  scaleLabel: {
+							display: true,
+							labelString: 'Issue Rankings (Int)'
+						  },
+						}]
+					}
+				}
+			};
+			
+			var chart = new Chart(ctx, config);
+			
+			})
+			
+			.fail(()=>{
+			
+				document.write("Problem processing data file.");
+			
+			});
+			});
+			
+			}
+			
+		</script>
+
+        <center>
+			<div class="container">
+				<canvas id="canvas"  width="250px" height="160px"></canvas>
+			</div>
+		</center>
+		<br>
+		<div class="col-lg-12"><hr></div> <!-- gray separator line -->
+
+		<font size='5'>Statistics:</font> 
+		<table width="100%" border="0">
+		<tr>
+		<td align='left' valign="top" width='40%'>  
+			<strong><font size='2' color="black"> &nbsp; Number of Critical Issues:</font></strong>
+		</td> 
+		<td align='left' valign="top" width='60%'>  
+			<font size='2' color="black"><%= issues.length %></font>
+		</td> 
+	    </tr>
+		<tr>
+		<td align='left' valign="top" width='40%'>  
+			<strong><font size='2' color="black"> &nbsp; Project URL:</font></strong>
+		</td> 
+		<td align='left' valign="top" width='60%'>  
+			<a style="text-decoration: none;" href="<%= project_url %>">
+			<font size='2' color="black"><%= project_url %></font>
+			</a>
+		</td> 
+	    </tr>
+		<tr>
+		<td align='left' valign="top" width='40%'>  
+			<strong><font size='2' color="black"> &nbsp; Author:</font></strong>
+		</td> 
+		<td align='left' valign="top" width='60%'>  
+			<font size='2' color="black"><%= author %></font>
+		</td> 
+	    </tr>
+		</table>
+
+		</td>
+	    </tr>
+	    </table>
+
+		<div class="network">
+
+		<ul>
+		</ul>
+
+		</div>
+
+
+		<font size='2' color="#fff">&copy; <script>document.write(new Date().getFullYear());</script>, Git Max </font>  &nbsp;<font size='2' color="#fff">|</font>&nbsp;<a style="text-decoration: none;" href="/about"><font size='2' color="#fff">About Us</font></a>
+
+
+	</td>
+	<td width="15%"></td>
+</tr>
+<tr>
+<td colspan="3"></td>
+</tr>
+</table>	
+
+</body>
+</html>
+
