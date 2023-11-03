@@ -99,21 +99,23 @@ Open your browser and visit, http://localhost:8080/ to view the app.
 
 ## Deploying the App on RedHat Openshift:
 
-- First, create an OpenShift sandbox account, create a 'cluster', then create a 'project'.
+- First, create an OpenShift sandbox account (https://developers.redhat.com/developer-sandbox), create a 'cluster', then create a 'project'.
 
 - Click '+ Add' to view options for building and deploying your app.
 
-- Build the application via 'source code' using git access. Enter this Git repository (or repo): https://github.com/VakinduPhilliam/gitmax.git
+- Build the application via 'source code' using git access. For git code URL, enter this Git repository (or repo): https://github.com/VakinduPhilliam/gitmax.git
 
 OpenShift will copy the repo to an internal storage location, inspect it, and attempt to discern the 'import strategy' to build it. 
 It will choose to use the Builder image for the Node.JS programming language (i.e. the s2i technology option).
 
-- Once all those options are confirmed, click the 'Create' button at the bottom of the page.
+- Once all the options are confirmed, click the 'Create' button at the bottom of the page.
 
 - Check that the build and deployment has installed the necessary dependency modules like described above.
 
 - Once you select the 'Create' button, you will be navigated back to 'Topology' page where you
  will see that our application now exists.
+
+- Finally click and open the app's public URL.
 
 </br>
 
