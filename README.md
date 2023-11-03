@@ -115,7 +115,7 @@ It will choose to use the Builder image for the Node.JS programming language (i.
 - Once you select the 'Create' button, you will be navigated back to 'Topology' page where you
  will see that our application now exists.
 
-- Finally click and open the app's public URL.
+- Finally, click and open the app's public URL.
 
 </br>
 
