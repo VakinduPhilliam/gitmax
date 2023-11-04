@@ -4,7 +4,7 @@
   "description": "Git Max is an AI powered web app that uses AI Machine Learning to determinine the most relevant Bitbucket project pull requests.",
   "main": "app.js",
   "scripts": {
-    "start": "npm install && pip -m -r requirements.txt && node app.js",
+    "start": "npm install && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pyinstall": "npm install && pip -m -r requirements.txt"
   },
