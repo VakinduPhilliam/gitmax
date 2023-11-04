@@ -122,7 +122,7 @@ By default Openshift will choose to use the 'Dockerfile' that is found in the Gi
 
 - Once you select the 'Create' button, you will be navigated back to 'Topology view' page where you will see that our application now exists.
 
--Finally visit the app's ‘Public URL’ found on top of the app’s topology.
+- Finally visit the app's ‘Public URL’ found on top of the app’s topology.
 
 </br>
 
