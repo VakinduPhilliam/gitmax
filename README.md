@@ -121,6 +121,8 @@ By default Openshift will choose to use the 'Dockerfile' that is found in the Gi
 - Once the options are confirmed, click the 'Create' button at the bottom of the page.
 
 - Once you select the 'Create' button, you will be navigated back to 'Topology view' page where you will see that our application now exists.
+  
+- Open the project source code in an IDE, go to the ‘views’ folder and find the ‘index.ejs’ file, replace the URL in the line of code `$.getJSON('URL.com/graph')` with the Public URL to your Openshift app’s Demo.
 
 - Finally visit the app's ‘Public URL’ found on top of the app’s topology.
 
@@ -130,7 +132,7 @@ By default Openshift will choose to use the 'Dockerfile' that is found in the Gi
 
 Visit the above URLs to see working demos.
 
-NOTE: First create an OpenShift account, then LOGIN and Visit the SANDBOX DEMO URL.
+NOTE: First create an OpenShift account, then LOGIN before you visit the SANDBOX DEMO URL.
 
 LIVE OPENSHIFT SANDBOX DEPLOYMENT DEMO URL: https://gitmax-git-vakinduphilliam-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/
 
