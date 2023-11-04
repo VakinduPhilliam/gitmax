@@ -50,6 +50,8 @@ _Git Max Interface:_
 
 - Pip8 or greater - is used for managing python dependency installations.
 
+- Docker - Used to build Image.
+
 <br/>
 
 ## Installation on Desktop PC:
@@ -101,21 +103,24 @@ Open your browser and visit, http://localhost:8080/ to view the app.
 
 - First, create an OpenShift sandbox account (https://developers.redhat.com/developer-sandbox), create a 'cluster', then create a 'project'.
 
-- Click '+ Add' to view options for building and deploying your app.
+- In ‘Developer Mode’, Click '+ Add' to view options for building and deploying your app.
 
-- Build the application via 'source code' using git access. For git code URL, enter this Git repository (or repo): https://github.com/VakinduPhilliam/gitmax.git
+- Choose ‘git access’ to build your application. Enter this Git repository (or repo) in the URL field: https://github.com/VakinduPhilliam/gitmax.git
 
-OpenShift will copy the repo to an internal storage location, inspect it, and attempt to discern the 'import strategy' to build it. 
-It will choose to use the Builder image for the Node.JS programming language (i.e. the s2i technology option).
+- OpenShift will copy the repo to an internal storage location, inspect it, and attempt to discern the 'import strategy' to build it. 
+By default Openshift will choose to use the 'Dockerfile' that is found in the Git repo to build the application image.
 
-- Once all the options are confirmed, click the 'Create' button at the bottom of the page.
+- Scroll further, you’ll see the 'Resources' and 'Advanced Options' Section.
 
-- Check that the build and deployment has installed the necessary dependency modules like described above.
+- Under 'Resources' ensure the 'Deployment' option is selected.
 
-- Once you select the 'Create' button, you will be navigated back to 'Topology' page where you
- will see that our application now exists.
+- Under 'Advanced Options' ensure the 'Create a route to the application URL' option is checked. As it notes near the option, this ensures that a 'Public URL' is created for our newly created application.
 
-- Finally, click and open the app's public URL.
+- Once the options are confirmed, click the 'Create' button at the bottom of the page.
+
+- Once you select the 'Create' button, you will be navigated back to 'Topology view' page where you will see that our application now exists.
+
+-Finally visit the app's ‘Public URL’ found on top of the app’s topology.
 
 </br>
 
