@@ -110,6 +110,8 @@ Open your browser and visit, http://localhost:8080/ to view the app.
 - OpenShift will copy the repo to an internal storage location, inspect it, and attempt to discern the 'import strategy' to build it. 
 By default Openshift will choose to use the 'Dockerfile' that is found in the Git repo to build the application image.
 
+- Leave the default build name chosen by Openshift as project name. 
+
 - Scroll further, you’ll see the 'Resources' and 'Advanced Options' Section.
 
 - Under 'Resources' ensure the 'Deployment' option is selected.
