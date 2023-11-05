@@ -8,6 +8,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearnex import patch_sklearn
 
+patch_sklearn()
+
 json_str = input() # Capture data input
 
 params = json.loads(json_str) # Load parameters values (params) to process
