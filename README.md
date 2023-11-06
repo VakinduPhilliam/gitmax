@@ -88,7 +88,7 @@ _npm run pyinstall_
 
 To run the app, execute the command below in the Command terminal. 
 
-_node index.js_
+_node app.js_
 
 </br>
 
